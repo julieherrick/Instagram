@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-//    ContainerView *containerView = [[ContainerView alloc] initWithSubViews:array];
+//    self.captionToPost.text = @"Caption...";
+//    self.captionToPost.textColor = [UIColor grayColor];
 }
 
 - (IBAction)onPhotoSelect:(id)sender {

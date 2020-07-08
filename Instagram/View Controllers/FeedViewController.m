@@ -16,6 +16,7 @@
 @interface FeedViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -28,6 +29,10 @@
     self.tableView.delegate = self;
     
     [self fetchPosts];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchPosts {
@@ -48,8 +53,9 @@
             // handle error
             NSLog(@"%@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
+        NSLog(@"done refreshing");
     }];
-    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -62,25 +68,7 @@
     cell.usernameLabel.text = post.author.username;
     cell.captionLabel.text = post.caption;
     
-
-    
     return cell;
-    /*
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
-    PFObject *post = [self.posts objectAtIndex:indexPath.row];
-    cell.captionLabel.text = post[@"text"];
-    
-    PFUser *user = post[@"user"];
-    if (user != nil) {
-        cell.usernameLabel.text = user.username;
-    } else {
-        cell.usernameLabel.text = @"🤖";
-    }
-    
-    cell.captionLabel.clipsToBounds = true;
-    
-    return cell;
-    */
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -103,7 +91,6 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
             UIViewController *loginController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
             myDelegate.window.rootViewController = loginController;
-            
         }
     }];
 }
