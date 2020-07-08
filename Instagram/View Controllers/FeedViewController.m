@@ -10,8 +10,12 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
+#import "PostCell.h"
+#import "Post.h"
 
 @interface FeedViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *posts;
 
 @end
 
@@ -20,7 +24,69 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self fetchPosts];
 }
+
+- (void)fetchPosts {
+    // construct PFQuery
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            // do something with the data fetched
+            self.posts = (NSMutableArray *) posts;
+            [self.tableView reloadData];
+        }
+        else {
+            // handle error
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    Post *post = self.posts[indexPath.row];
+    
+    cell.photoImageView.file = post.image;
+    cell.photoImageView.file = post.image;
+    [cell.photoImageView loadInBackground];
+    cell.usernameLabel.text = post.author.username;
+    cell.captionLabel.text = post.caption;
+    
+
+    
+    return cell;
+    /*
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    PFObject *post = [self.posts objectAtIndex:indexPath.row];
+    cell.captionLabel.text = post[@"text"];
+    
+    PFUser *user = post[@"user"];
+    if (user != nil) {
+        cell.usernameLabel.text = user.username;
+    } else {
+        cell.usernameLabel.text = @"🤖";
+    }
+    
+    cell.captionLabel.clipsToBounds = true;
+    
+    return cell;
+    */
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
 - (IBAction)onLogOut:(id)sender {
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
@@ -31,12 +97,7 @@
         } else {
             NSLog(@"User logged out successfully");
             
-            // display view controller that needs to shown after successful login
-//            NSString * storyboardName = @"Main";
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-//            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//            [self presentViewController:vc animated:YES completion:nil];
-            
+            // return to login page
             SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];

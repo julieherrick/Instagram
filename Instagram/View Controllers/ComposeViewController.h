@@ -1,5 +1,5 @@
 //
-//  FeedViewController.h
+//  ComposeViewController.h
 //  Instagram
 //
 //  Created by Julie Herrick on 7/7/20.
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ComposeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 
 @end
 
