@@ -94,7 +94,7 @@
                     <connections>
                         <outlet property="passwordField" destination="VcA-r6-Mbf" id="xom-lF-2pU"/>
                         <outlet property="usernameField" destination="Bvi-2P-24L" id="LEA-iE-jJ0"/>
-                        <segue destination="ebs-pD-jjf" kind="presentation" identifier="loginSegue" id="S8k-hV-f3W"/>
+                        <segue destination="lem-Gk-SzP" kind="presentation" identifier="loginSegue" id="3Ei-z7-2zh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,7 +104,41 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="120.53571428571428"/>
+            <point key="canvasLocation" x="-530" y="121"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="A5T-UZ-OHC">
+            <objects>
+                <viewController id="Bl7-oz-GBC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OpN-dN-Wv4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="48d-Gz-3yC"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="9Df-Sa-QJH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FF3-nx-vtR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341" y="895"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="2Iv-ED-P00">
+            <objects>
+                <tabBarController modalPresentationStyle="fullScreen" id="lem-Gk-SzP" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zkz-xo-Dh4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ebs-pD-jjf" kind="relationship" relationship="viewControllers" id="9sp-d6-e1f"/>
+                        <segue destination="Bl7-oz-GBC" kind="relationship" relationship="viewControllers" id="EWM-cR-zfN"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wi2-MO-UP2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341" y="121"/>
         </scene>
         <!--Home Feed-->
         <scene sceneID="yrd-gf-Kfu">
@@ -342,7 +376,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="UQp-kU-1S3">
                             <connections>
                                 <action selector="onCancel:" destination="bqh-ej-jU1" id="vzc-KK-DVS"/>
-                                <segue destination="ebs-pD-jjf" kind="presentation" id="IPU-Hu-cDj"/>
+                                <segue destination="lem-Gk-SzP" kind="presentation" id="F1a-TR-FAA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="zh8-Ox-cOK">
@@ -370,10 +404,11 @@
             </objects>
             <point key="canvasLocation" x="4002.898550724638" y="120.53571428571428"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="1PR-3A-Q2X">
             <objects>
                 <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="ebs-pD-jjf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="S3B-oS-Cyq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d7A-Qj-TD3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -408,7 +443,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IPU-Hu-cDj"/>
+        <segue reference="F1a-TR-FAA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="image_placeholder" width="375" height="375"/>
