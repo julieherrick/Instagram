@@ -83,11 +83,12 @@
     } else {
         [Post postUserImage:self.imageToPost.image withCaption:self.captionToPost.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
-                NSLog(@"The post was shared!");
                 [self backToFeed];
+                NSLog(@"The post was shared!");
                 
             } else {
-                NSLog(@"Problem saving post: %@", error.localizedDescription);
+//                NSLog(@"Problem saving post: %@", error.localizedDescription);
+                [self alertError:error.localizedDescription];
             }
         }];
     }
