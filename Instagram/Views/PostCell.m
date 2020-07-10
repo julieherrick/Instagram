@@ -21,4 +21,12 @@
     // Configure the view for the selected state
 }
 
+- (void)setPost:(Post *)post {
+    _post = post;
+    self.photoImageView.file = post.image;
+    [self.photoImageView loadInBackground];
+    self.usernameLabel.text = post.author.username;
+    self.captionLabel.text = post.caption;
+}
+
 @end

@@ -52,7 +52,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
 
     // Do something with the images (based on your use case)
-    [self.imageToPost setImage:[self resizeImage:editedImage withSize:CGSizeMake(125, 125)]];
+    [self.imageToPost setImage:[self resizeImage:editedImage withSize:CGSizeMake(414, 414)]];
     
     
     // Dismiss UIImagePickerController to go back to your original view controller
