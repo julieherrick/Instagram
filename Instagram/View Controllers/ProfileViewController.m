@@ -10,12 +10,17 @@
 #import "Post.h"
 #import "PostGridCell.h"
 #import <Parse/Parse.h>
+@import Parse;
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *posts;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *postCount;
+
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @end
 
@@ -28,9 +33,27 @@
     self.collectionView.delegate = self;
     
     [self collectionView];
-    
+
     [self fetchPosts];
     
+    self.profileImage.layer.cornerRadius = 45;
+    self.profileImage.layer.masksToBounds = YES;
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"viewDidLayoutSubviews");
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+    
+    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 5;
+     
+     CGFloat postersPerLine = 2;
+     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
+    
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void)fetchPosts {
@@ -60,7 +83,6 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostGridCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostGridCell" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
-    
     cell.post = post;
     
     return cell;
