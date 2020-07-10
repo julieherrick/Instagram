@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postCount;
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (strong, nonatomic) NSNumber *numberOfPosts;
 
 @end
 
@@ -38,6 +39,9 @@
     
     self.profileImage.layer.cornerRadius = 45;
     self.profileImage.layer.masksToBounds = YES;
+    
+    self.usernameLabel.text = [PFUser currentUser].username;
+    
     
 }
 
@@ -86,6 +90,29 @@
     cell.post = post;
     
     return cell;
+}
+
+- (void)getPostCount {
+    __block int count = 0;
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Post"];
+        [postQuery orderByDescending:@"createdAt"];
+        [postQuery whereKey:@"author" equalTo: [PFUser currentUser]];
+
+        // fetch data asynchronously
+        [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+            if (posts) {
+                // do something with the data fetched
+                count += 1;
+            }
+            else {
+                // handle error
+                NSLog(@"%@", error.localizedDescription);
+            }
+    //        [self.refreshControl endRefreshing];
+            NSLog(@"done refreshing");
+        }];
+    self.numberOfPosts = [NSNumber numberWithInt:count];
+    self.postCount.text = [NSString stringWithFormat:@"%@", self.numberOfPosts ];
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
