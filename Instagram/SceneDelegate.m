@@ -26,8 +26,8 @@
 
         // TODO: Load Chat view controller and set as root view controller
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *feedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
-        self.window.rootViewController = feedNavigationController;
+        UIViewController *homeNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
+        self.window.rootViewController = homeNavigationController;
     }
 }
 
