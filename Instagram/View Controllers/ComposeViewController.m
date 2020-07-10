@@ -102,8 +102,8 @@
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *feedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
-    myDelegate.window.rootViewController = feedNavigationController;
+    UIViewController *homeNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"];
+    myDelegate.window.rootViewController = homeNavigationController;
 }
 
 - (void)alertError:(NSString *)errorMessage {

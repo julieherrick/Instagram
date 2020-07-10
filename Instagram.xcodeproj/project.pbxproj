@@ -14,6 +14,8 @@
 		799F0B2F24B51A5500FAECC6 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F0B2E24B51A5500FAECC6 /* PostCell.m */; };
 		799F0B3224B51A7600FAECC6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F0B3124B51A7600FAECC6 /* Post.m */; };
 		799F0B3A24B7C94100FAECC6 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F0B3924B7C94100FAECC6 /* DetailsViewController.m */; };
+		799F0B3D24B907AF00FAECC6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F0B3C24B907AF00FAECC6 /* ProfileViewController.m */; };
+		799F0B4024B9083D00FAECC6 /* PostGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799F0B3F24B9083D00FAECC6 /* PostGridCell.m */; };
 		79B78AA524B3CEC70013BB4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B78AA424B3CEC70013BB4D /* AppDelegate.m */; };
 		79B78AA824B3CEC70013BB4D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B78AA724B3CEC70013BB4D /* SceneDelegate.m */; };
 		79B78AAB24B3CEC70013BB4D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B78AAA24B3CEC70013BB4D /* LoginViewController.m */; };
@@ -59,6 +61,10 @@
 		799F0B3124B51A7600FAECC6 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		799F0B3824B7C94100FAECC6 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		799F0B3924B7C94100FAECC6 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		799F0B3B24B907AF00FAECC6 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		799F0B3C24B907AF00FAECC6 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		799F0B3E24B9083D00FAECC6 /* PostGridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostGridCell.h; sourceTree = "<group>"; };
+		799F0B3F24B9083D00FAECC6 /* PostGridCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostGridCell.m; sourceTree = "<group>"; };
 		79B78AA024B3CEC70013BB4D /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B78AA324B3CEC70013BB4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		79B78AA424B3CEC70013BB4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -200,6 +206,8 @@
 				799F0B2A24B5185500FAECC6 /* ComposeViewController.m */,
 				799F0B3824B7C94100FAECC6 /* DetailsViewController.h */,
 				799F0B3924B7C94100FAECC6 /* DetailsViewController.m */,
+				799F0B3B24B907AF00FAECC6 /* ProfileViewController.h */,
+				799F0B3C24B907AF00FAECC6 /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -209,6 +217,8 @@
 			children = (
 				799F0B2D24B51A5500FAECC6 /* PostCell.h */,
 				799F0B2E24B51A5500FAECC6 /* PostCell.m */,
+				799F0B3E24B9083D00FAECC6 /* PostGridCell.h */,
+				799F0B3F24B9083D00FAECC6 /* PostGridCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -467,7 +477,9 @@
 				79B78AAB24B3CEC70013BB4D /* LoginViewController.m in Sources */,
 				799F0B2824B4F9CD00FAECC6 /* FeedViewController.m in Sources */,
 				79B78AA524B3CEC70013BB4D /* AppDelegate.m in Sources */,
+				799F0B4024B9083D00FAECC6 /* PostGridCell.m in Sources */,
 				799F0B2B24B5185500FAECC6 /* ComposeViewController.m in Sources */,
+				799F0B3D24B907AF00FAECC6 /* ProfileViewController.m in Sources */,
 				799F0B2F24B51A5500FAECC6 /* PostCell.m in Sources */,
 				79B78AB624B3CEC80013BB4D /* main.m in Sources */,
 				799F0B3A24B7C94100FAECC6 /* DetailsViewController.m in Sources */,
