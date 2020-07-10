@@ -27,6 +27,9 @@
 //    self.captionToPost.text = @"Caption...";
 //    self.captionToPost.textColor = [UIColor grayColor];
 }
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:YES];
+}
 
 - (IBAction)onPhotoSelect:(id)sender {
     NSLog(@"tapped");
@@ -75,15 +78,19 @@
 
 - (IBAction)onShare:(id)sender {
     
-    [Post postUserImage:self.imageToPost.image withCaption:self.captionToPost.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"The post was shared!");
-            [self backToFeed];
-            
-        } else {
-            NSLog(@"Problem saving post: %@", error.localizedDescription);
-        }
-    }];
+    if (self.imageToPost.image == nil) {
+        [self alertError:@"picture required"];
+    } else {
+        [Post postUserImage:self.imageToPost.image withCaption:self.captionToPost.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"The post was shared!");
+                [self backToFeed];
+                
+            } else {
+                NSLog(@"Problem saving post: %@", error.localizedDescription);
+            }
+        }];
+    }
 }
 - (IBAction)onCancel:(id)sender {
     
@@ -96,6 +103,21 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *feedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationController"];
     myDelegate.window.rootViewController = feedNavigationController;
+}
+
+- (void)alertError:(NSString *)errorMessage {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    // create an OK action
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // closes to let the user fill the fields
+    }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
 }
 
 /*

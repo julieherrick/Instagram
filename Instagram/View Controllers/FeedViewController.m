@@ -13,6 +13,7 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "DetailsViewController.h"
+#import "ComposeViewController.h"
 
 @interface FeedViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -107,20 +108,26 @@
 }
 
 
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    PostCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    Post *post = self.posts[indexPath.row];
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = post;
-    
-    NSLog(@"Tapping on a post!");
+    if([sender isKindOfClass:[UIBarButtonItem class]]) {
+        NSLog(@"button");
+
+    } else {
+        NSLog(@"not a button");
+        PostCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+        
+        NSLog(@"Tapping on a post!");
+    }
 }
 
 

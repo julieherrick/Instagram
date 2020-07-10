@@ -7,6 +7,7 @@
 //
 
 #import "PostCell.h"
+#import "DateTools.h"
 
 @implementation PostCell
 
@@ -26,7 +27,26 @@
     self.photoImageView.file = post.image;
     [self.photoImageView loadInBackground];
     self.usernameLabel.text = post.author.username;
-    self.captionLabel.text = post.caption;
+    
+    
+    NSMutableAttributedString *captionText = [[NSMutableAttributedString alloc] init];
+    NSDictionary *bold = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]} ; // dictionary with attributes
+    NSDictionary *normal = @{NSFontAttributeName: [UIFont systemFontOfSize:17]} ; // dictionary with attributes
+    NSAttributedString *formattedAuthor = [[NSAttributedString alloc] initWithString:post.author.username attributes:bold];
+    NSAttributedString *formattedCaption = [[NSAttributedString alloc] initWithString:[@" " stringByAppendingString:post.caption] attributes:normal];
+    
+    [captionText appendAttributedString:formattedAuthor];
+    [captionText appendAttributedString:formattedCaption];
+    
+    [self.captionLabel setAttributedText:captionText];
+    
+    NSDate *createdAt = [self.post createdAt];
+    self.timestampLabel.text = createdAt.timeAgoSinceNow;
+    
+    self.profileImage.layer.cornerRadius = 26;
+    self.profileImage.layer.masksToBounds = YES;
+    
 }
+
 
 @end
